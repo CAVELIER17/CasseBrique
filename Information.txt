@@ -1,0 +1,5 @@
+Niveau
+facile =150
+moyen =250
+difficile = 300
+expert = 450 + impossibilité de reprendre le jeu apres perte de balle
