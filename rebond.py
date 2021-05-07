@@ -13,10 +13,10 @@ class Rebond:
         if (bille.position.y - bille.taille) <= 0:
             bille.direction.y = -bille.direction.y
 
-    def RebondBrique(self,brique,bille,Zone,entraxeB,Score,val):
+    def RebondBrique(self,brique,bille,Zone,entraxeB,Score,val,degat):
         if brique.position.x - Zone < bille.position.x < brique.position.x + entraxeB + Zone and brique.position.y - Zone < bille.position.y < brique.position.y + entraxeB + Zone:
-            val = val - 1
-            Score = Score + 1
+            val = val - degat
+            Score = Score + degat
             if brique.position.x - Zone < bille.position.x < brique.position.x + Zone / 2 or brique.position.x + entraxeB - Zone / 2 < bille.position.x < brique.position.x + entraxeB + Zone:
                 bille.direction.x = -bille.direction.x
 
