@@ -35,7 +35,7 @@ scoreMax = 100
 acceleration = 1.014
 choix_NV = False
 btnNTclic = False
-
+GO = False
 
 def setup():
     # Initialisation fenetre
@@ -69,7 +69,7 @@ def setup():
     bille1.deplacer((fen_x / 2, fen_y - player1.hauteurplayer - (player1.taille / 2) - bille1.taille))
 
 def run():
-    global demarrage, fin, pause, Score, Findelapartie, tempscore, Gagner, pause, RBD, scoreMax, acceleration, choix_NV, btnNTclic, briques
+    global demarrage, fin, pause, Score, Findelapartie, tempscore, Gagner, pause, RBD, scoreMax, acceleration, choix_NV, btnNTclic, briques,GO
 
     for b in briques:
         b.afficher(core)
@@ -80,7 +80,7 @@ def run():
 
     if fin:
         demarrage = False
-        if len(briques) != 0:
+        if len(briques) != 0 or GO:
             Findelapartie.afficher((fen_x, fen_y))
         else:
             Gagner.afficher((fen_x, fen_y))
@@ -92,6 +92,10 @@ def run():
             choix_NV = False
             fin = False
             btnNTclic = False
+            briques = []
+            for i in range(0, 22):
+                for j in range(0, 8):
+                    briques.append(Brique(i * entraxeB, j * entraxeB))
     else:
         if demarrage:
 
@@ -107,6 +111,8 @@ def run():
 
             # Mode Pause
             pause = pauseT.ModePause(pause, player1, bille1, (fen_x, fen_y))
+            if pause:
+                GO = True
 
             # Gestion des briques
             for t in briques:
@@ -138,6 +144,7 @@ def run():
                 player1.deplacer((fen_x / 2, 0))
                 player1.afficher(core)
                 bille1.afficher(core)
+                GO = False
 
                 if not core.getMouseLeftClick():
                     btnNTclic = True
